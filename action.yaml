@@ -1,6 +1,6 @@
 name: "CloudFlare DNS Management"
-description: "Creates and updates  CloudFlare DNS records"
-author: "rez0n"
+description: "Creates and updates CloudFlare DNS records"
+author: "Alec Hartung"
 
 inputs:
   type:
@@ -27,7 +27,7 @@ outputs:
   record_id:
     description: "Record ID"
   name:
-    description: 'Affected domain name'
+    description: "Affected domain name"
 runs:
   using: "node12"
   main: "main.js"

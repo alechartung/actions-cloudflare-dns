@@ -1,6 +1,5 @@
 /**
  * Create CloudFlare DNS Record Action for GitHub
- * https://github.com/marketplace/actions/cloudflare-create-dns-record
  */
 
 const path = require("path");
@@ -29,7 +28,7 @@ const getCurrentRecordId = () => {
   const record = result.find((x) => x.name === name);
 
   if (!record) {
-    return null
+    return null;
   }
 
   return record.id;
@@ -47,7 +46,7 @@ const createRecord = () => {
       name: process.env.INPUT_NAME,
       content: process.env.INPUT_CONTENT,
       ttl: Number(process.env.INPUT_TTL),
-      proxied: process.env.INPUT_PROXIED,
+      proxied: process.env.INPUT_PROXIED === "true",
     }),
     `https://api.cloudflare.com/client/v4/zones/${process.env.INPUT_ZONE}/dns_records`,
   ]);
@@ -80,7 +79,7 @@ const updateRecord = (id) => {
       name: process.env.INPUT_NAME,
       content: process.env.INPUT_CONTENT,
       ttl: Number(process.env.INPUT_TTL),
-      proxied: process.env.INPUT_PROXIED,
+      proxied: process.env.INPUT_PROXIED === "true",
     }),
     `https://api.cloudflare.com/client/v4/zones/${process.env.INPUT_ZONE}/dns_records/${id}`,
   ]);
@@ -99,7 +98,7 @@ const updateRecord = (id) => {
 
   console.log(`::set-output name=record_id::${result.id}`);
   console.log(`::set-output name=name::${result.name}`);
-}
+};
 
 const id = getCurrentRecordId();
 if (id) {

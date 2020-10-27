@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: rez0n/create-dns-record@v2
+      - uses: alechartung/create-dns-record@v3
         with:
           type: "A"
           name: "review.example.com"
@@ -25,7 +25,8 @@ jobs:
           token: ${{ secrets.CLOUDFLARE_TOKEN }}
           zone: ${{ secrets.CLOUDFLARE_ZONE }}
 ```
-*** Use full qualified domain name to update if it exist ***
+
+**_ Use full qualified domain name to update if it exist _**
 
 ## License
 
